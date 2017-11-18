@@ -3,7 +3,7 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 
 public class BaseDeDonnees {
-/
+//////////grrrrrrrr
     public void connectionOuverture() {
         Connection connection = null;
 

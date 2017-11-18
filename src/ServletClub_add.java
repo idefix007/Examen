@@ -6,10 +6,10 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.text.DateFormat;
 
-@WebServlet(name = "Servlet", urlPatterns ={"/add-membre"})
-public class ServletMembre_add extends HttpServlet {
+@WebServlet(name = "Servlet", urlPatterns ={"/add-club"})
+public class ServletClub_add extends HttpServlet {
 
-    private ListeMembre listeMembre = new ListeMembre();
+    private ListeClub listeClub = new ListeClub();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //Force l'UTF8
@@ -19,20 +19,18 @@ public class ServletMembre_add extends HttpServlet {
          * Récupération des données saisies, envoyées en tant que paramètres
          * à la validation du formulaire
          */
-        String nom = request.getParameter( "Membre_Nom" );
-        String prenom = request.getParameter( "Membre_Prenom" );
-        String dateNaissance = request.getParameter( "Membre_DateNaissance" );
-        String club = request.getParameter( "FK_Club" );
+        String nom = request.getParameter( "Club_Nom" );
+        String type = request.getParameter( "Club_Type" );
 
-        //Ajoute à la liste des membres
-        listeMembre.ajouteMembre (new Membre (nom, prenom, dateNaissance, club));
+        //Ajoute à la liste des clubs
+        listeClub.ajouteClub(new Club (nom, type));
 
-        response.sendRedirect("/membre");
+        response.sendRedirect("/club");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        request.getRequestDispatcher("/vues/membreAdd.jsp").forward(request,response);
+        request.getRequestDispatcher("/vues/clubAdd.jsp").forward(request,response);
     }
 
 }

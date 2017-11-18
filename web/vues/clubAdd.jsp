@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Gestion des membres de clubs</title>
+    <title>Gestion des clubs</title>
 </head>
 <body>
 
@@ -12,26 +12,17 @@
 
         <div class="col-6">
 
-            <h2> Nouveau membre</h2>
+            <h2> Nouveau club</h2>
 
-            <!-- Formulaire - Ajouter un nouveau membre -->
+            <!-- Formulaire - Ajouter un nouveau club -->
 
             <form action="/add-membre" method="post">
 
                 <div class="form-group">
-                    <input class="form-control" placeholder="Nom du membre"
-                           type="text" name="Nom du membre">
+                    <input class="form-control" placeholder="Nom du club"
+                           type="text" name="Nom du club">
                 </div>
 
-                <div class="form-group">
-                    <input class="form-control" placeholder="Prénom du membre"
-                           type="text" name="Prénom du membre">
-                </div>
-
-                <div class="form-group">
-                    <input class="form-control" placeholder="Date de Naissance"
-                           type="date" name="Date de Naissance">
-                </div>
 
                 <!-- Select option pour liste déroulante -->
                 <div class="form-group">

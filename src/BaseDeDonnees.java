@@ -8,7 +8,7 @@ public class BaseDeDonnees {
         Connection connection = null;
 
         try {
-            //chargement du driver
+            //chargement du driver^pm
             Class.forName("com.mysql.jdbc.Driver");
             System.out.println("Pilote MySQL JDBC chargé");
         } catch (ClassNotFoundException e) {

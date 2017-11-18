@@ -15,7 +15,7 @@ public class ServletMembre_add extends HttpServlet {
         //Force l'UTF8
         request.setCharacterEncoding("UTF-8");
 
-
+///
         /*
          * Récupération des données saisies, envoyées en tant que paramètres
          * à la validation du formulaire

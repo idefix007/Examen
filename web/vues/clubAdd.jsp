@@ -19,14 +19,14 @@
             <form action="/add-membre" method="post">
 
                 <div class="form-group">
-                    <input class="form-control" placeholder="Nom du club"
+                    Nom : <input class="form-control" placeholder="Nom du club"
                            type="text" name="Nom du club">
                 </div>
 
 
                 <!-- Select option pour liste déroulante -->
                 <div class="form-group">
-                    <select><option></option></select>
+                    Type : <select><option></option></select>
                 </div>
 
                 <!-- Bouton : ajouter -->

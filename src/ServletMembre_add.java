@@ -4,12 +4,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.text.DateFormat;
 
 @WebServlet(name = "Servlet", urlPatterns ={"/add-membre"})
 public class ServletMembre_add extends HttpServlet {
 
-    private ListeMembre listeMembre = new ListeMembre();
+    public ListeMembre listeMembre = new ListeMembre();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //Force l'UTF8

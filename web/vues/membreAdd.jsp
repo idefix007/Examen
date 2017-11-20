@@ -1,9 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Gestion des membres de clubs</title>
-</head>
-<body>
+<%@include file="../templates/header.jspf"%>
 
 
 <div class="container">

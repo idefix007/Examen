@@ -5,22 +5,34 @@
   Time: 10:20
   To change this template use File | Settings | File Templates.
 --%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Liste des membres</title>
-</head>
-<body>
+<%@include file="../templates/header.jspf"%>
+
 <H4>Liste des membres</H4>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Date de naissance</th>
+        <th>Club</th>
 
-<ol>
+    </tr>
+    </thead>
+    <tbody>
 
-    <c:forEach items="${membres}" var="membre">
+    <c:forEach items="${membres}" var="membres">
+    <tr>
 
-    <li>${membre.nom}</li>
+        <td>${membres.nom}</td>
+        <td>${membres.prenom}</td>
+        <td>${membres.dateNaissance}</td>
+        <td>${membres.club}</td>
+    </tr>
+    </c:forEach>
+    </tbody>
+</table>
 
-</ol>
+
 
 </body>
 </html>

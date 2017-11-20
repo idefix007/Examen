@@ -4,7 +4,7 @@ import java.sql.*;
 
 public class BaseDeDonnees {
 //////////grrrrrrr
-    public void connectionOuverture() {
+    public static Connection connectionOuverture() {
         Connection connection = null;
 
         try {
@@ -24,6 +24,7 @@ public class BaseDeDonnees {
             e.printStackTrace();
             System.out.println("Erreur lors de l’établissement de la connexion");
         }
+        return connection;
 
     }
     public static void connectionFermeture(ResultSet rs) {       //fermer le resultset

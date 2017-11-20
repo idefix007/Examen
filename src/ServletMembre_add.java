@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "Servlet", urlPatterns ={"/add-membre"})
+@WebServlet(name = "ServletMembre_add", urlPatterns ={"/add-membre"})
 public class ServletMembre_add extends HttpServlet {
 
     public ListeMembre listeMembre = new ListeMembre();

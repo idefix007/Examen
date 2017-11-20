@@ -16,24 +16,24 @@
 
                 <div class="form-group">
                     Nom :    <input class="form-control" placeholder="Nom du membre"
-                           type="text" name="Nom du membre">
+                           type="text" name="nom">
                 </div>
 
                 <div class="form-group">
                     Prénom :  <input class="form-control" placeholder="Prénom du membre"
-                           type="text" name="Prénom du membre">
+                           type="text" name="prenom">
                 </div>
 
                 <div class="form-group">
                     Date de naissance :  <input class="form-control" placeholder="Date de Naissance"
-                           type="date" name="Date de Naissance">
+                           type="date" name="dateN">
                 </div>
 
                 <!-- Select option pour liste déroulante -->
                 <div class="form-group">
-                    Club :  <select>
-                    <c:forEach var="clubs" items="listeClub">
-                        <option>${clubs.nom}</option>
+                    Club :  <select name="club">
+                    <c:forEach items="${clubs}" var="clubs">
+                        <option name="${clubs.id}">${clubs.nom}</option>
                     </c:forEach>
                 </select>
                 </div>

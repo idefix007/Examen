@@ -21,9 +21,11 @@ public class ServletClub_add extends HttpServlet {
          */
         String nom = request.getParameter( "Club_Nom" );
         String type = request.getParameter( "Club_Type" );
+        //int id = request.getParameter()
+
 
         //Ajoute à la liste des clubs
-        listeClub.ajouteClub(new Club (nom, type));
+        //listeClub.ajouteClub(new Club (nom, type, id));
 
         response.sendRedirect("/club");
     }

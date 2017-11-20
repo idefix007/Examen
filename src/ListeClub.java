@@ -39,7 +39,7 @@ public class ListeClub {
                 String nom = rs.getString(2);
                 String type = rs.getString(3);
                 System.out.println("Nom : "+nom+" / Type : "+type);
-                clubs.add(new Club(nom, type));
+                clubs.add(new Club(nom, type, id));
             }
 
 

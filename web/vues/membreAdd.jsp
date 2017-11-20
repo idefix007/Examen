@@ -1,4 +1,5 @@
 <%@include file="../templates/header.jspf"%>
+<%@ page contentType="text/html;charset=UTF-8"  %>
 
 
 <div class="container">
@@ -30,7 +31,11 @@
 
                 <!-- Select option pour liste déroulante -->
                 <div class="form-group">
-                    Club :  <select><option></option></select>
+                    Club :  <select>
+                    <c:forEach var="clubs" items="listeClub">
+                        <option>${clubs.nom}</option>
+                    </c:forEach>
+                </select>
                 </div>
 
                 <!-- Bouton : ajouter -->

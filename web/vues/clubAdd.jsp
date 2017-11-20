@@ -1,4 +1,5 @@
 <%@include file="../templates/header.jspf"%>
+<%@ page contentType="text/html;charset=UTF-8"  %>
 
 <div class="container">
     <main class="row justify-content-center">

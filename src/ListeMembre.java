@@ -4,11 +4,12 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListeMembre {
+public class ListeMembre extends BaseDeDonnees{
 
     private static List<Membre> membres = new ArrayList<>();
 
     static {
+
 
         Connection connection = null;
         PreparedStatement requete = null;

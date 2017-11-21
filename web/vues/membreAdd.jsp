@@ -33,7 +33,7 @@
                 <div class="form-group">
                     Club :  <select name="club">
                     <c:forEach items="${clubs}" var="clubs">
-                        <option name="${clubs.id}">${clubs.nom}</option>
+                        <option value="${clubs.id}">${clubs.nom}</option>
                     </c:forEach>
                 </select>
                 </div>

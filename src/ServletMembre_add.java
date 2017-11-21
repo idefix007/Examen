@@ -26,12 +26,17 @@ public class ServletMembre_add extends HttpServlet {
         String prenom = request.getParameter("prenom");
         String dateNaissance = request.getParameter("dateN");
         String club = request.getParameter("club");
+        try {
+            BaseDeDonnees.ajoutMembre(nom, prenom,dateNaissance, club);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         //int clubId=(int)club;
 
         //Ajoute à la liste des membres
         //listeMembre.ajouteMembre (new Membre (nom, prenom, dateNaissance, club));
 
-        Connection connection = null;
+       /* Connection connection = null;
         PreparedStatement requete = null;
         ResultSet rs = null;
 
@@ -92,14 +97,14 @@ public class ServletMembre_add extends HttpServlet {
             }
         }
 
-
+*/
             response.sendRedirect("/membre");
 
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("clubs", listeClub.recupereClubs());
-        request.getRequestDispatcher("/vues/membreAdd.jsp").forward(request, response);
+        getServletContext().getRequestDispatcher("/vues/membreAdd.jsp").forward(request, response);
     }
 
 }

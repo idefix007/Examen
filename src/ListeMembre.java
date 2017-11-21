@@ -4,10 +4,24 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListeMembre extends BaseDeDonnees{
+public class ListeMembre{
+
 
     private static List<Membre> membres = new ArrayList<>();
+    {
 
+    }
+
+    public void add(Membre membre) {
+        membres.add(membre);
+    }
+    public List<Membre> recupereMembres() {
+        BaseDeDonnees.recupereMembre();
+        return membres;
+    }
+}
+
+/*
     static {
 
 
@@ -20,7 +34,7 @@ public class ListeMembre extends BaseDeDonnees{
         try {
             //chargement du driver
             Class.forName("com.mysql.jdbc.Driver");
-            System.out.println("Pilote MySQL JDBC chargé");
+            System.out.println("Pilote MySQL JDBC charg&eacute;");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
             System.out.println("Erreur lors du chargmement du pilote");
@@ -29,13 +43,13 @@ public class ListeMembre extends BaseDeDonnees{
             //obtention de la connexion
             connection = DriverManager.getConnection
                     ("jdbc:mysql://localhost:3306/5ipoo", "root", "");
-            System.out.println("Connexion opérationnelle");
+            System.out.println("Connexion op&eacute;rationnelle");
 
-            //rechercher les données de la table suivant le nom utilisateur du formulaire
+            //rechercher les donn&eacute;es de la table suivant le nom utilisateur du formulaire
             requete = connection.prepareStatement("SELECT * FROM membres INNER JOIN clubs on FK_Club=PK_CLub ORDER by Membre_Nom, Membre_Prenom");
              //requete.setString(1, recherche);
             //requete.setString(2, mdpp);
-            //exécuter la requete
+            //ex&eacute;cuter la requete
             rs = requete.executeQuery();
             while (rs.next()){
                 int id = rs.getInt(1);
@@ -46,7 +60,7 @@ public class ListeMembre extends BaseDeDonnees{
                 String dateNaissance = sdfr.format(datesql);
 
                 String clubnom=rs.getString(7);
-                System.out.println("Nom : "+nom+" / Prénom : "+prenom+ " / Date de naissance "+dateNaissance+" /Nom du club"+clubnom);
+                System.out.println("Nom : "+nom+" / Pr&eacute;nom : "+prenom+ " / Date de naissance "+dateNaissance+" /Nom du club"+clubnom);
                 membres.add(new Membre(nom, prenom, dateNaissance, clubnom));
             }
 
@@ -56,7 +70,7 @@ public class ListeMembre extends BaseDeDonnees{
 
         } catch (SQLException e) {
             e.printStackTrace();
-            System.out.println("Erreur lors de l’établissement de la connexion");
+            System.out.println("Erreur lors de l&rsquo;&eacute;tablissement de la connexion");
         }
         //fermer la connexion
         finally {
@@ -90,9 +104,7 @@ public class ListeMembre extends BaseDeDonnees{
 
     }
 
-    public List<Membre> recupereMembres() {
-        return membres;
-    }
+
 
     public void ajouteMembre(Membre m) {
 
@@ -100,5 +112,5 @@ public class ListeMembre extends BaseDeDonnees{
         membres.add(m);
     }
 
-
 }
+*/

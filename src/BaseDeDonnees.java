@@ -1,10 +1,14 @@
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.sql.*;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 public class BaseDeDonnees {
-//////////grrrrrrr
-    public static Connection connectionOuverture() {
+
+    static Connection connection = null;
+
+    //////////grrrrrrr
+    private static Connection connectionOuverture() {
         Connection connection = null;
 
         try {
@@ -27,24 +31,24 @@ public class BaseDeDonnees {
         return connection;
 
     }
+
     public static void connectionFermeture(ResultSet rs) {       //fermer le resultset
-        if(rs!=null) {
+        if (rs != null) {
             try {
                 rs.close();
-            }
-            catch(Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
 
         }
 
     }
+
     public static void connectionFermeture(Statement smt) {       //fermer le statment
-        if(smt!=null) {
+        if (smt != null) {
             try {
                 smt.close();
-            }
-            catch(Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
 
@@ -54,14 +58,79 @@ public class BaseDeDonnees {
 
 
     public static void connectionFermeture(Connection connection) {       //fermer la connexion
-        if(connection!=null) {
+        if (connection != null) {
             try {
                 connection.close();
-            }
-            catch(Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
     }
 
+    public static void ajoutMembre(String nom, String prenom, String dateNaissance, String club) throws SQLException {
+        PreparedStatement requete = null;
+        Connection connection;
+        connection = connectionOuverture();
+
+        requete = connection.prepareStatement("insert into membres(Membre_Nom, Membre_Prenom, Membre_DateNaissance, FK_Club) values (?,?,?,?)");
+        requete.setString(1, nom);
+        requete.setString(2, prenom);
+        requete.setString(3, dateNaissance);
+        requete.setInt(4, Integer.parseInt(club));
+
+        //requete.setString(2, mdpp);
+        //exécuter la requete
+        requete.executeUpdate();
+
+
+        connectionFermeture(requete);
+        connectionFermeture(connection);
+    }
+
+
+
+    public static ListeMembre recupereMembre(){
+
+        ListeMembre membres= new ListeMembre();
+
+        Connection connection = connectionOuverture();
+        PreparedStatement requete = null;
+        ResultSet rs = null;
+
+        //PreparedStatement requete;
+
+        {
+            try {
+                requete = connection.prepareStatement("SELECT * FROM membres INNER JOIN clubs on FK_Club=PK_CLub ORDER by Membre_Nom, Membre_Prenom");
+                rs = requete.executeQuery();
+                while (rs.next()) {
+                    int id = rs.getInt(1);
+                    String nom = rs.getString(2);
+                    String prenom = rs.getString(3);
+                    Date datesql = rs.getDate(4);
+                    SimpleDateFormat sdfr = new SimpleDateFormat("dd/MM/yyyy");
+                    String dateNaissance = sdfr.format(datesql);
+                    String clubNom = rs.getString(7);
+                    System.out.println("Nom : "+nom+" / Prénom : "+prenom+ " / Date de naissance "+dateNaissance+" /Nom du club "+clubNom);
+                    membres.add(new Membre(nom, prenom, dateNaissance, clubNom));
+
+
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            connectionFermeture(rs);
+            connectionFermeture(requete);
+            connectionFermeture(connection);
+            //return membres;
+
+        }
+        return membres;
+    }
+
+
 }
+
+
+

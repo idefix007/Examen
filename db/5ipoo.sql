@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  127.0.0.1
--- Généré le :  Sam 25 Novembre 2017 à 11:30
+-- Généré le :  Sam 25 Novembre 2017 à 11:41
 -- Version du serveur :  5.7.14
 -- Version de PHP :  5.6.25
 
@@ -74,7 +74,7 @@ CREATE TABLE `membres` (
   `PK_Membre` int(11) NOT NULL,
   `Membre_Nom` varchar(255) NOT NULL,
   `Membre_Prenom` varchar(255) NOT NULL,
-  `Membre_DateNaissance` varchar(255) DEFAULT NULL,
+  `Membre_DateNaissance` date DEFAULT NULL,
   `FK_Club` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -325,7 +325,7 @@ INSERT INTO `membres` (`PK_Membre`, `Membre_Nom`, `Membre_Prenom`, `Membre_DateN
 (240, 'Lancaster', 'Kane', '2006-12-11', 25),
 (241, 'Combs', 'Hedwig', '1994-03-07', 1),
 (242, 'Weber', 'Abel', '1991-12-06', 4),
-(243, 'Acosta', 'Zeus', '1996-02-22', 7),
+(506, 'Christ', 'Jésus', '1950-12-24', 0),
 (244, 'Spears', 'Alana', '2016-01-06', 13),
 (245, 'Soto', 'Darrel', '1992-05-16', 8),
 (246, 'Christensen', 'Josephine', '1997-04-08', 14),
@@ -583,7 +583,18 @@ INSERT INTO `membres` (`PK_Membre`, `Membre_Nom`, `Membre_Prenom`, `Membre_DateN
 (498, 'Owens', 'Elizabeth', '1983-10-06', 22),
 (499, 'Gates', 'Riley', '2015-01-04', 2),
 (500, 'Conley', 'Sybil', '1998-10-27', 22),
-(522, 'AAAaaaaaaaaaaaaaaaa', 'a', '2002-02-02', 19);
+(501, 'Martin', 'Bruno', '2016-11-01', 19),
+(508, 'Christ', 'Jésus', '2017-11-16', 0),
+(504, 'De Maertelaere', 'Karine', '1969-05-17', 1),
+(509, 'samuel', 'dequin', '2010-03-20', 0),
+(510, 'TEST', 'TEST', '1970-01-01', 0),
+(511, 'renard', 'rudy', '1990-01-25', 0),
+(512, 'aaaaaa', 'aaaaaa', '1900-06-05', 0),
+(513, 'AAA', 'A', '1978-12-09', 0),
+(514, 'BBBBB', 'BBB', '2017-11-07', 0),
+(515, 'dddd', 'dddd', '2017-11-02', 0),
+(516, 'eeeee', 'eeee', '2017-11-08', 0),
+(517, 'ffff', 'fffff', '2017-11-03', 7);
 
 -- --------------------------------------------------------
 
@@ -639,7 +650,7 @@ ALTER TABLE `clubs`
 -- AUTO_INCREMENT pour la table `membres`
 --
 ALTER TABLE `membres`
-  MODIFY `PK_Membre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=523;
+  MODIFY `PK_Membre` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=519;
 --
 -- AUTO_INCREMENT pour la table `utilisateurs`
 --

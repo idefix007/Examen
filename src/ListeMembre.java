@@ -15,7 +15,11 @@ public class ListeMembre{
     public void add(Membre membre) {
         membres.add(membre);
     }
+    public void del(Membre membre){
+        membres.remove(membre);
+    }
     public List<Membre> recupereMembres() {
+        membres.clear();
         BaseDeDonnees.recupereMembre();
         return membres;
     }

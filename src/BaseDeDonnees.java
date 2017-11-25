@@ -76,7 +76,9 @@ public class BaseDeDonnees {
         requete.setString(1, nom);
         requete.setString(2, prenom);
         requete.setString(3, dateNaissance);
+        System.out.println(club);
         requete.setInt(4, Integer.parseInt(club));
+        System.out.println(club);
         System.out.println("Le membre a été ajouté");
 
         //requete.setString(2, mdpp);
@@ -209,7 +211,7 @@ public class BaseDeDonnees {
                     String nom = rs.getString(2);
                     String type = rs.getString(3);
                     System.out.println("Nom : "+nom+" / Type : "+type);
-                    clubs.add(new Club(nom, type));
+                    clubs.add(new Club(id,nom, type));
 
 
                 }

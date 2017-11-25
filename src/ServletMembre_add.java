@@ -26,6 +26,7 @@ public class ServletMembre_add extends HttpServlet {
         String prenom = request.getParameter("prenom");
         String dateNaissance = request.getParameter("dateN");
         String club = request.getParameter("club");
+
         try {
             BaseDeDonnees.ajoutMembre(nom, prenom,dateNaissance, club);
         } catch (SQLException e) {
@@ -39,8 +40,6 @@ public class ServletMembre_add extends HttpServlet {
        /* Connection connection = null;
         PreparedStatement requete = null;
         ResultSet rs = null;
-
-
         try {
             //chargement du driver
             Class.forName("com.mysql.jdbc.Driver");
@@ -54,19 +53,15 @@ public class ServletMembre_add extends HttpServlet {
             connection = DriverManager.getConnection
                     ("jdbc:mysql://localhost:3306/5ipoo", "root", "");
             System.out.println("Connexion opérationnelle");
-
             //rechercher les données de la table suivant le nom utilisateur du formulaire
             requete = connection.prepareStatement("insert into membres(Membre_Nom, Membre_Prenom, Membre_DateNaissance, FK_Club) values (?,?,?,?)");
             requete.setString(1, nom);
             requete.setString(2, prenom);
             requete.setString(3, dateNaissance);
             requete.setInt(4, Integer.parseInt(club));
-
             //requete.setString(2, mdpp);
             //exécuter la requete
             requete.executeUpdate();
-
-
         } catch (SQLException e) {
             e.printStackTrace();
             System.out.println("Erreur lors de l’établissement de la connexion");
@@ -93,12 +88,10 @@ public class ServletMembre_add extends HttpServlet {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-
             }
         }
-
 */
-            response.sendRedirect("/membre");
+        response.sendRedirect("/membre");
 
     }
 

@@ -6,7 +6,7 @@ public class Club {
 
     // Constructeurs
 
-    public Club(String nom, String type, int id) {
+    public Club(String nom, String type) {
         this.nom = nom;
         this.type = type;
         this.id=id;

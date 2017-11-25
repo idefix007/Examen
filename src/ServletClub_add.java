@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.text.DateFormat;
 
 @WebServlet(name = "Servlet", urlPatterns ={"/add-club"})
@@ -21,11 +22,14 @@ public class ServletClub_add extends HttpServlet {
          */
         String nom = request.getParameter( "Club_Nom" );
         String type = request.getParameter( "Club_Type" );
-        //int id = request.getParameter()
 
+        try {
+            //Ajoute à la liste des clubs
+            BaseDeDonnees.ajoutClub(nom, type);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-        //Ajoute à la liste des clubs
-        //listeClub.ajouteClub(new Club (nom, type, id));
 
         response.sendRedirect("/club");
     }

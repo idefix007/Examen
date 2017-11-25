@@ -88,6 +88,23 @@ public class BaseDeDonnees {
     }
 
 
+    public static void ajoutClub(String nom, String type) throws SQLException {
+        PreparedStatement requete = null;
+        Connection connection;
+        connection = connectionOuverture();
+
+        requete = connection.prepareStatement("insert into clubs(Club_Nom, Club_Type) values (?,?)");
+        requete.setString(1, nom);
+        requete.setString(2, type);
+
+        //requete.setString(2, mdpp);
+        //exécuter la requete
+        requete.executeUpdate();
+
+
+        connectionFermeture(requete);
+        connectionFermeture(connection);
+    }
 
     public static ListeMembre recupereMembre(){
 
@@ -127,6 +144,43 @@ public class BaseDeDonnees {
 
         }
         return membres;
+    }
+
+
+    public static ListeClub recupereClub(){
+
+        ListeClub clubs= new ListeClub();
+
+        Connection connection = connectionOuverture();
+        PreparedStatement requete = null;
+        ResultSet rs = null;
+
+        //PreparedStatement requete;
+
+        {
+            try {
+                requete = connection.prepareStatement("SELECT * FROM clubs ORDER by Club_Nom, Club_Type");
+                rs = requete.executeQuery();
+                while (rs.next()) {
+                    int id = rs.getInt(1);
+                    String nom = rs.getString(2);
+                    String type = rs.getString(3);
+                    System.out.println("Nom : "+nom+" / Type : "+type);
+                    clubs.add(new Club(nom, type));
+
+
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            connectionFermeture(rs);
+            connectionFermeture(requete);
+            connectionFermeture(connection);
+            //return membres;
+
+        }
+        return clubs;
     }
 
 

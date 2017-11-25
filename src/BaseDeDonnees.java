@@ -77,6 +77,31 @@ public class BaseDeDonnees {
         requete.setString(2, prenom);
         requete.setString(3, dateNaissance);
         requete.setInt(4, Integer.parseInt(club));
+        System.out.println("Le membre a été ajouté");
+
+        //requete.setString(2, mdpp);
+        //exécuter la requete
+        requete.executeUpdate();
+
+
+
+        connectionFermeture(requete);
+        connectionFermeture(connection);
+    }
+
+    public static void modMembre(String id, String nom, String prenom, String dateNaissance, String club) throws SQLException {
+        PreparedStatement requete = null;
+        Connection connection;
+        connection = connectionOuverture();
+
+        requete = connection.prepareStatement("update membres set Membre_Nom=?, Membre_Prenom=?,Membre_DateNaissance=?, FK_Club=? where PK_Membre=?");
+        requete.setString(1,nom);
+        requete.setString(2,prenom);
+        requete.setString(3,dateNaissance);
+        requete.setString(4,club);
+        requete.setInt(5,Integer.parseInt(id));
+        System.out.println("Enregistrement modifie");
+
 
         //requete.setString(2, mdpp);
         //exécuter la requete
@@ -88,6 +113,24 @@ public class BaseDeDonnees {
     }
 
 
+    public static void supprimeMembre(String id) throws SQLException {
+        PreparedStatement requete = null;
+        Connection connection;
+        connection = connectionOuverture();
+
+        requete = connection.prepareStatement("delete from membres where PK_Membre=?");
+        requete.setInt(1,Integer.parseInt(id));
+        System.out.println("Enregistrement efface");
+
+
+        //requete.setString(2, mdpp);
+        //exécuter la requete
+        requete.executeUpdate();
+
+
+        connectionFermeture(requete);
+        connectionFermeture(connection);
+    }
     public static void ajoutClub(String nom, String type) throws SQLException {
         PreparedStatement requete = null;
         Connection connection;
@@ -129,7 +172,7 @@ public class BaseDeDonnees {
                     String dateNaissance = sdfr.format(datesql);
                     String clubNom = rs.getString(7);
                     System.out.println("Nom : "+nom+" / Prénom : "+prenom+ " / Date de naissance "+dateNaissance+" /Nom du club "+clubNom);
-                    membres.add(new Membre(nom, prenom, dateNaissance, clubNom));
+                    membres.add(new Membre(id,nom, prenom, dateNaissance, clubNom));
 
 
                 }

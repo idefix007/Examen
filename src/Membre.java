@@ -7,10 +7,12 @@ public class Membre {
     private String prenom;
     private String dateNaissance;
     private String club;
+    private int id;
 
     // Constructeurs
 
-    public Membre(String nom, String prenom, String dateNaissance, String club) {
+    public Membre(int id, String nom, String prenom, String dateNaissance, String club) {
+        this.id = id;
         this.nom = nom;
         this.prenom = prenom;
         this.dateNaissance = dateNaissance;
@@ -19,6 +21,10 @@ public class Membre {
 
     // Getteurs
 
+
+    public int getId() {
+        return id;
+    }
 
     public String getNom() {
         return nom;
@@ -38,6 +44,10 @@ public class Membre {
 
     // Setteurs
 
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public void setNom(String nom) {
         this.nom = nom;

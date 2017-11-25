@@ -19,6 +19,7 @@
 <table class="table table-striped">
     <thead>
     <tr>
+        <th>Id</th>
         <th>Nom</th>
         <th>Prénom</th>
         <th>Date de naissance</th>
@@ -32,16 +33,16 @@
     <c:forEach items="${membres}" var="membres">
     <tr>
 
+        <td>${membres.id}</td>
         <td>${membres.nom}</td>
         <td>${membres.prenom}</td>
         <td>${membres.dateNaissance}</td>
         <td>${membres.club}</td>
-        <td><a class="col-2" href="/del-todo?todo=${todo.nom}
-&categorie=${todo.categorie}">
+        <td><a class="col-2" href="/supp-membre?membres=${membres.id}">
             <i class="fa fa-trash-o"aria-hidden="true"></i>
         </a>
-            <a class="col-2" href="/del-todo?todo=${todo.nom}
-&categorie=${todo.categorie}">
+            <a class="col-2" href="/mod-membre?membresid=${membres.id}&membresnom=${membres.nom}&membresprenom=${membres.prenom}
+&membresdatenaissance=${membres.dateNaissance}&membresclub=${membres.club}">
                 <i class="fa fa-pencil"aria-hidden="true"></i>
             </a> </td>
     </tr>

@@ -3,7 +3,7 @@
   User: admin
   Date: 21-10-17
   Time: 10:20
-  To change this template use File | Settings | File Templates.
+  
 --%>
 <%@include file="../templates/header.jspf"%>
 <%@ page contentType="text/html;charset=UTF-8"  %>

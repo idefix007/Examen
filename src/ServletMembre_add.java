@@ -32,12 +32,12 @@ public class ServletMembre_add extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        //int clubId=(int)club;
+
 
         //Ajoute à la liste des membres
         //listeMembre.ajouteMembre (new Membre (nom, prenom, dateNaissance, club));
 
-       /* Connection connection = null;
+       /* Connection
         PreparedStatement requete = null;
         ResultSet rs = null;
         try {

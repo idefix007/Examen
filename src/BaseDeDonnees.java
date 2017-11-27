@@ -241,6 +241,48 @@ public class BaseDeDonnees {
         return membres;
     }
 
+    public static ListeMembre recupereMembresClub(String id_mc){
+
+
+        Connection connection = connectionOuverture();
+        PreparedStatement requete = null;
+        ResultSet rs = null;
+
+        //PreparedStatement requete;
+
+        {
+            try {
+                requete = connection.prepareStatement("SELECT * FROM membres INNER JOIN clubs on FK_Club=PK_CLub where FK_Club=? ORDER by Membre_Nom, Membre_Prenom");
+                requete.setInt(1,Integer.parseInt(id_mc));
+                rs = requete.executeQuery();
+                while (rs.next()) {
+                    int id = rs.getInt(1);
+                    String nom = rs.getString(2);
+                    String prenom = rs.getString(3);
+                    Date datesql = rs.getDate(4);
+                    SimpleDateFormat sdfr = new SimpleDateFormat("dd/MM/yyyy");
+                    String dateNaissance = sdfr.format(datesql);
+                    int idClub = rs.getInt(5);
+                    String clubNom = rs.getString(7);
+                    System.out.println("Nom : "+nom+" / Prénom : "+prenom+ " / Date de naissance "+dateNaissance+" /Nom du club "+clubNom);
+                    membres.add(new Membre(id,nom, prenom, dateNaissance, clubNom, idClub));
+
+
+                }
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            connectionFermeture(rs);
+            connectionFermeture(requete);
+            connectionFermeture(connection);
+            //return membres;
+
+        }
+        return membres;
+    }
+
+
     public static Club chercheClub(String id_c) throws SQLException {
         PreparedStatement requete = null;
         Connection connection;

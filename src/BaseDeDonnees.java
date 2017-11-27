@@ -6,6 +6,9 @@ import java.util.List;
 public class BaseDeDonnees {
 
     static Connection connection = null;
+    static ResultSet rs = null;
+    static ListeMembre membres= new ListeMembre();
+
 
     //////////grrrrrrr
     private static Connection connectionOuverture() {
@@ -114,6 +117,43 @@ public class BaseDeDonnees {
         connectionFermeture(connection);
     }
 
+    public static Membre chercheMembre(String id_m) throws SQLException {
+        PreparedStatement requete = null;
+
+
+        Connection connection;
+        connection = connectionOuverture();
+
+
+        System.out.println(id_m);
+
+        requete = connection.prepareStatement("SELECT * FROM membres INNER JOIN clubs on FK_Club=PK_CLub  where PK_Membre=?");
+        requete.setInt(1,Integer.parseInt(id_m));
+        rs = requete.executeQuery();
+        Membre membre = null;
+        while (rs.next()) {
+            int id = rs.getInt(1);
+            String nom = rs.getString(2);
+            String prenom = rs.getString(3);
+            String dateNaissance = rs.getString(4);
+            int idClub = rs.getInt(5);
+            //Date datesql = rs.getDate(4);
+            //SimpleDateFormat sdfr = new SimpleDateFormat("dd/MM/yyyy");
+            //String dateNaissance = sdfr.format(datesql);
+            String clubNom = rs.getString(7);
+            System.out.println("Nom : " + nom + " / Prénom : " + prenom + " / Date de naissance " + dateNaissance + " /Nom du club " + clubNom+" / Numéro du club : "+idClub);
+            membre = new Membre(id, nom, prenom, dateNaissance, clubNom, idClub);
+        }
+
+        System.out.println("Recherche du membre effectuée");
+
+
+
+        connectionFermeture(rs);
+        connectionFermeture(requete);
+        connectionFermeture(connection);
+        return membre;
+    }
 
     public static void supprimeMembre(String id) throws SQLException {
         PreparedStatement requete = null;
@@ -122,7 +162,7 @@ public class BaseDeDonnees {
 
         requete = connection.prepareStatement("delete from membres where PK_Membre=?");
         requete.setInt(1,Integer.parseInt(id));
-        System.out.println("Enregistrement efface");
+        System.out.println("Membre efface");
 
 
         //requete.setString(2, mdpp);
@@ -153,7 +193,6 @@ public class BaseDeDonnees {
 
     public static ListeMembre recupereMembre(){
 
-        ListeMembre membres= new ListeMembre();
 
         Connection connection = connectionOuverture();
         PreparedStatement requete = null;
@@ -161,8 +200,7 @@ public class BaseDeDonnees {
 
         //PreparedStatement requete;
 
-        {
-            try {
+        try {
                 requete = connection.prepareStatement("SELECT * FROM membres INNER JOIN clubs on FK_Club=PK_CLub ORDER by Membre_Nom, Membre_Prenom");
                 rs = requete.executeQuery();
                 while (rs.next()) {
@@ -172,9 +210,10 @@ public class BaseDeDonnees {
                     Date datesql = rs.getDate(4);
                     SimpleDateFormat sdfr = new SimpleDateFormat("dd/MM/yyyy");
                     String dateNaissance = sdfr.format(datesql);
+                    int idClub = rs.getInt(5);
                     String clubNom = rs.getString(7);
                     System.out.println("Nom : "+nom+" / Prénom : "+prenom+ " / Date de naissance "+dateNaissance+" /Nom du club "+clubNom);
-                    membres.add(new Membre(id,nom, prenom, dateNaissance, clubNom));
+                    membres.add(new Membre(id,nom, prenom, dateNaissance, clubNom, idClub));
 
 
                 }
@@ -187,7 +226,7 @@ public class BaseDeDonnees {
             connectionFermeture(connection);
             //return membres;
 
-        }
+
         return membres;
     }
 
@@ -198,7 +237,7 @@ public class BaseDeDonnees {
 
         Connection connection = connectionOuverture();
         PreparedStatement requete = null;
-        ResultSet rs = null;
+        //ResultSet rs = null;
 
         //PreparedStatement requete;
 
@@ -210,7 +249,7 @@ public class BaseDeDonnees {
                     int id = rs.getInt(1);
                     String nom = rs.getString(2);
                     String type = rs.getString(3);
-                    System.out.println("Nom : "+nom+" / Type : "+type);
+                    System.out.println("ID : "+id+"Nom : "+nom+" / Type : "+type);
                     clubs.add(new Club(id,nom, type));
 
 

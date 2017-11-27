@@ -10,7 +10,7 @@ import java.text.SimpleDateFormat;
 @WebServlet(name = "ServletMembre_mod", urlPatterns = {"/mod-membre"})
 public class ServletMembre_mod extends HttpServlet {
 
-    public ListeMembre listeMembre = new ListeMembre();
+   // public Membre membre = new Membre();
     private ListeClub listeClub = new ListeClub();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -21,17 +21,19 @@ public class ServletMembre_mod extends HttpServlet {
         /*
          * Récupération des données saisies, envoyées en tant que paramètres
          * à la validation du formulaire
-         */
+*/
         String id =request.getParameter("id");
         String nom = request.getParameter("nom");
         String prenom = request.getParameter("prenom");
         String dateNaissance = request.getParameter("dateN");
         String club = request.getParameter("club");
+
         try {
-            BaseDeDonnees.modMembre(id, nom, prenom,dateNaissance, club);
+            BaseDeDonnees.modMembre(id, nom, prenom, dateNaissance, club);
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         //int clubId=(int)club;
 
         //Ajoute à la liste des membres
@@ -106,14 +108,17 @@ public class ServletMembre_mod extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //request.setAttribute("clubs", listeClub.recupereClubs());
         //getServletContext().getRequestDispatcher("/vues/listeMembres.jsp").forward(request, response);
-        int id = Integer.parseInt(request.getParameter("membresid"));
-        String nom = request.getParameter("membresnom");
-        String prenom = request.getParameter("membresprenom");
-        String dateN = request.getParameter("membresdatenaissance");
-        String club = request.getParameter("membresclub");
-        Membre membremod=new Membre(id,nom,prenom,dateN,club);
-        request.setAttribute("membres", listeMembre.recupereMembres());
-        response.sendRedirect("/vues/membreMod.jsp");
+        try {
+            request.setAttribute("membres", BaseDeDonnees.chercheMembre(request.getParameter("membres")));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        //request.setAttribute("membres", listeMembre.recupereMembres());
+
+        //response.sendRedirect("/vues/membreMod.jsp");
+        request.setAttribute("clubs", listeClub.recupereClubs());
+        request.getRequestDispatcher("vues/membreMod.jsp").forward(request,response);
+
     }
 
 }

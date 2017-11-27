@@ -41,8 +41,7 @@
         <td><a class="col-2" href="/supp-membre?membres=${membres.id}">
             <i class="fa fa-trash-o"aria-hidden="true"></i>
         </a>
-            <a class="col-2" href="/mod-membre?membresid=${membres.id}&membresnom=${membres.nom}&membresprenom=${membres.prenom}
-&membresdatenaissance=${membres.dateNaissance}&membresclub=${membres.club}">
+            <a class="col-2" href="/mod-membre?membres=${membres.id}">
                 <i class="fa fa-pencil"aria-hidden="true"></i>
             </a> </td>
     </tr>

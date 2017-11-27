@@ -27,6 +27,14 @@
                 <!-- Select option pour liste déroulante -->
                 <div class="form-group">
                     Type : <select name="type">
+                    <c:choose>
+                        <c:when test="${clubs.type==value}">
+                            <option selected="selected" value="${clubs.type}">${clubs.type}</option>
+                        </c:when>
+                        <c:otherwise>
+                            <option value="${clubs.type}">${clubs.type}</option>
+                        </c:otherwise>
+                    </c:choose>
                     <option value="Basket-ball">Basket-ball</option>
                     <option value="Hand-ball">Hand-ball</option>
                     <option value="Rugby">Rugby</option>

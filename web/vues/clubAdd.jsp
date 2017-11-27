@@ -9,7 +9,7 @@
 
             <h2> Nouveau club</h2>
 
-            <!-- Formulaire - Ajouter un nouveau club -->
+            <!-- Formulaire - Ajouter un nouveau club  -->
 
             <form action="/add-club" method="post">
 

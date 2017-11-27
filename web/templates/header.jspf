@@ -29,7 +29,7 @@
         <!-- Split button -->
         <div class="btn-group">
             <button type="button" class="btn btn-danger">
-                <span href="http://localhost:8081/">Accueil</span>
+                <span href="/accueil">Accueil</span>
             </button>
         </div>
 
@@ -41,8 +41,8 @@
         </button>
         <div class="dropdown-menu">
 
-            <a class="dropdown-item" href="http://localhost:8081/membre">Liste des membres</a>
-            <a class="dropdown-item" href="http://localhost:8081/add-membre">Ajouter un membre</a>
+            <a class="dropdown-item" href="/membre">Liste des membres</a>
+            <a class="dropdown-item" href="/add-membre">Ajouter un membre</a>
         </div>
     </div>
 
@@ -53,8 +53,8 @@
         </button>
         <div class="dropdown-menu">
 
-            <a class="dropdown-item" href="http://localhost:8081/club">Liste des clubs</a>
-            <a class="dropdown-item" href="http://localhost:8081/add-club">Ajouter un club</a>
+            <a class="dropdown-item" href="/club">Liste des clubs</a>
+            <a class="dropdown-item" href="/add-club">Ajouter un club</a>
         </div>
     </div>
 

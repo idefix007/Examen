@@ -180,6 +180,27 @@ public class BaseDeDonnees {
         connectionFermeture(connection);
     }
 
+    public static void modClub(String id, String nom, String type) throws SQLException {
+        PreparedStatement requete = null;
+        Connection connection;
+        connection = connectionOuverture();
+
+        requete = connection.prepareStatement("update clubs set Club_Nom=?, Club_Type=? where PK_Club=?");
+        requete.setString(1,nom);
+        requete.setString(2,type);
+        requete.setInt(3,Integer.parseInt(id));
+        System.out.println("Enregistrement modifie");
+
+
+        //requete.setString(2, mdpp);
+        //exécuter la requete
+        requete.executeUpdate();
+
+
+        connectionFermeture(requete);
+        connectionFermeture(connection);
+    }
+
     public static ListeMembre recupereMembre(){
 
 
@@ -218,6 +239,28 @@ public class BaseDeDonnees {
 
         }
         return membres;
+    }
+
+    public static Club chercheClub(String id_c) throws SQLException {
+        PreparedStatement requete = null;
+        Connection connection;
+        connection = connectionOuverture();
+        System.out.println(id_c);
+        requete = connection.prepareStatement("SELECT * FROM clubs where PK_Club=?");
+        requete.setInt(1,Integer.parseInt(id_c));
+        rs = requete.executeQuery();
+        Club club = null;
+        while (rs.next()) {
+            int id = rs.getInt(1);
+            String nom = rs.getString(2);
+            String type = rs.getString(3);
+            club = new Club(id, nom, type);
+        }
+        System.out.println("Recherche du membre effectuée");
+        connectionFermeture(rs);
+        connectionFermeture(requete);
+        connectionFermeture(connection);
+        return club;
     }
 
 

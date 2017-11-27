@@ -35,7 +35,7 @@ public class ServletClub_add extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        //request.setAttribute("clubs", listeClub.recupereClubs());
         request.getRequestDispatcher("/vues/clubAdd.jsp").forward(request,response);
     }
 

@@ -9,7 +9,7 @@
 
             <h2> Nouveau club</h2>
 
-            <!-- Formulaire - Ajouter un nouveau club -->
+            <!-- Formulaire - Ajouter un nouveau club  -->
 
             <form action="/add-club" method="post">
 
@@ -22,9 +22,10 @@
                 <!-- Select option pour liste déroulante -->
                 <div class="form-group">
                     Type : <select name="type">
-                    <c:forEach items="${clubs}" var="clubs">
-                        <option value="${clubs.type}"</option>
-                    </c:forEach>
+                        <option value="Basket-ball">Basket-ball</option>
+                        <option value="Hand-ball">Hand-ball</option>
+                        <option value="Rugby">Rugby</option>
+                        <option value="Volley-ball">Volley-ball</option>
                 </select>
                 </div>
 

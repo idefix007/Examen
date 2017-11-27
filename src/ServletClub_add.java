@@ -20,8 +20,8 @@ public class ServletClub_add extends HttpServlet {
          * Récupération des données saisies, envoyées en tant que paramètres
          * à la validation du formulaire
          */
-        String nom = request.getParameter( "Club_Nom" );
-        String type = request.getParameter( "Club_Type" );
+        String nom = request.getParameter( "nom" );
+        String type = request.getParameter( "type" );
 
         try {
             //Ajoute à la liste des clubs

@@ -11,18 +11,23 @@
 
             <!-- Formulaire - Ajouter un nouveau club -->
 
-            <form action="/add-membre" method="post">
+            <form action="/add-club" method="post">
 
                 <div class="form-group">
                     Nom : <input class="form-control" placeholder="Nom du club"
-                           type="text" name="Nom du club">
+                           type="text" name="nom">
                 </div>
 
 
                 <!-- Select option pour liste déroulante -->
                 <div class="form-group">
-                    Type : <select><option></option></select>
+                    Type : <select name="type">
+                    <c:forEach items="${clubs}" var="clubs">
+                        <option value="${clubs.type}"</option>
+                    </c:forEach>
+                </select>
                 </div>
+
 
                 <!-- Bouton : ajouter -->
 
@@ -36,3 +41,4 @@
 
 </body>
 </html>
+<%@include file="../templates/footer.jspf"%>

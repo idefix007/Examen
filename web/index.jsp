@@ -16,22 +16,26 @@
     <title>Gestion des clubs</title>
   </head>
   <body>
-  <H1>GESTION DES CLUBS</H1>
-  <H2>Membres</H2>
+
+
+  <H3>Membres</H3>
   <a href="/membre" class="btn btn-info btn-block">
-    <i> Consulter la liste des membres</i>
+    <i> Liste des membres</i>
   </a>
 
   <a href="/add-membre" class="btn btn-info btn-block">
-    <i class="fa fa-plus"> Ajouter un membre</i>
+    <i class="fa fa-plus"> Ajouter</i>
   </a>
   <br>
-  <H2>Clubs</H2>
+  <H3>Clubs</H3>
   <a href="/club" class="btn btn-info btn-block">
-  <i> Consulter la liste des clubs</i>
+  <i> Liste des clubs</i>
   </a>
   <a href="/add-club" class="btn btn-info btn-block">
-    <i class="fa fa-plus"> Ajouter un club</i>
+    <i class="fa fa-plus"> Ajouter</i>
   </a>
   </body>
+
+
 </html>
+      <%@include file="templates/footer.jspf"%>

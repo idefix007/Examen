@@ -13,7 +13,13 @@ public class ListeClub {
     public void add(Club club) {
         clubs.add(club);
     }
+
+    public void del(Club club){
+        clubs.remove(club);
+    }
+
     public List<Club> recupereClubs() {
+        clubs.clear();
         BaseDeDonnees.recupereClub();
         return clubs;
     }

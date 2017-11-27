@@ -8,15 +8,21 @@ public class Membre {
     private String dateNaissance;
     private String club;
     private int id;
+    private int idClub;
 
     // Constructeurs
 
-    public Membre(int id, String nom, String prenom, String dateNaissance, String club) {
+    public Membre(int id, String nom, String prenom, String dateNaissance, String club, int idClub) {
         this.id = id;
         this.nom = nom;
         this.prenom = prenom;
         this.dateNaissance = dateNaissance;
         this.club = club;
+        this.idClub=idClub;
+    }
+
+    public Membre() {
+
     }
 
     // Getteurs
@@ -42,6 +48,8 @@ public class Membre {
         return club;
     }
 
+    public int getIdClub() { return idClub; }
+
     // Setteurs
 
 
@@ -63,5 +71,9 @@ public class Membre {
 
     public void setClub(String club) {
         this.club = club;
+    }
+
+    public void setIdClub(int idClub) {
+        this.idClub = idClub;
     }
 }

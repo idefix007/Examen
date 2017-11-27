@@ -95,6 +95,7 @@ public class ServletMembre_add extends HttpServlet {
 
     }
 
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("clubs", listeClub.recupereClubs());
         getServletContext().getRequestDispatcher("/vues/membreAdd.jsp").forward(request, response);

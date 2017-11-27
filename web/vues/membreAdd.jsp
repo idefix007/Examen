@@ -5,7 +5,6 @@
 <div class="container">
     <main class="row justify-content-center">
 
-
         <div class="col-6">
 
             <h2> Nouveau membre</h2>
@@ -50,3 +49,4 @@
 
 </body>
 </html>
+<%@include file="../templates/footer.jspf"%>

@@ -13,7 +13,7 @@
 <H4>Liste des membres
     <a class="col-2" href="/add-membre">
 
-        <i class="fa fa-plus" aria-hidden="true"></i>
+        <i class="fa fa-plus" aria-hidden="true" style="color:green"></i>
     </a>
 </H4>
 <table class="table table-striped">
@@ -39,23 +39,18 @@
         <td>${membres.dateNaissance}</td>
         <td>${membres.club}</td>
         <td><a class="col-2" href="/supp-membre?membres=${membres.id}">
-            <i class="fa fa-trash-o"aria-hidden="true"></i>
+            <i class="fa fa-trash-o"aria-hidden="true" onclick="return confirm('etes vous sur de vouloir supprimer ce membre?')"></i>
         </a>
-            <a class="col-2" href="/mod-membre?membresid=${membres.id}&membresnom=${membres.nom}&membresprenom=${membres.prenom}
-&membresdatenaissance=${membres.dateNaissance}&membresclub=${membres.club}">
-                <i class="fa fa-pencil"aria-hidden="true"></i>
+            <a class="col-2" href="/mod-membre?membres=${membres.id}">
+            <i class="fa fa-pencil"aria-hidden="true"></i>
             </a> </td>
     </tr>
     </c:forEach>
     </tbody>
 </table>
-<a href="/add-membre" class="btn btn-info btn-block">
-    <i class="fa fa-plus"> Ajouter un membre</i>
-</a>
-
-        </div>
     </main>
 </div>
 
 </body>
 </html>
+<%@include file="../templates/footer.jspf"%>

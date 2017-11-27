@@ -18,6 +18,7 @@ public class ListeMembre{
     public void del(Membre membre){
         membres.remove(membre);
     }
+
     public List<Membre> recupereMembres() {
         membres.clear();
         BaseDeDonnees.recupereMembre();

@@ -59,3 +59,4 @@
 </body>
 </html>
 <%@include file="../templates/footer.jspf"%>
+<style> .col-10 {margin:30px;}</style>

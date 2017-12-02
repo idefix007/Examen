@@ -9,12 +9,12 @@ public class BaseDeDonnees {
     static ResultSet rs = null;
     static ListeMembre membres= new ListeMembre();
 
-    //////////grrrrrrr
+
     private static Connection connectionOuverture() {
         Connection connection = null;
 
         try {
-            //chargement du driver^pm
+            //chargement du driver
             Class.forName("com.mysql.jdbc.Driver");
             System.out.println("Pilote MySQL JDBC chargé");
         } catch (ClassNotFoundException e) {
@@ -69,11 +69,14 @@ public class BaseDeDonnees {
         }
     }
 
+    // Chercher un membre
     public static Membre chercheMembre(String id_m) throws SQLException {
         PreparedStatement requete = null;
         Connection connection;
         connection = connectionOuverture();
         System.out.println(id_m);
+
+        // Requête dans la db
         requete = connection.prepareStatement("SELECT * FROM membres INNER JOIN clubs on FK_Club=PK_CLub  where PK_Membre=?");
         requete.setInt(1,Integer.parseInt(id_m));
         rs = requete.executeQuery();
@@ -95,11 +98,13 @@ public class BaseDeDonnees {
         return membre;
     }
 
+    // Ajouter un membre
     public static void ajoutMembre(String nom, String prenom, String dateNaissance, String club) throws SQLException {
         PreparedStatement requete = null;
         Connection connection;
         connection = connectionOuverture();
 
+        // Insertion du membre dans la db
         requete = connection.prepareStatement("insert into membres(Membre_Nom, Membre_Prenom, Membre_DateNaissance, FK_Club) values (?,?,?,?)");
         requete.setString(1, nom);
         requete.setString(2, prenom);
@@ -109,21 +114,18 @@ public class BaseDeDonnees {
         System.out.println(club);
         System.out.println("Le membre a été ajouté");
 
-        //requete.setString(2, mdpp);
-        //exécuter la requete
         requete.executeUpdate();
-
-
-
         connectionFermeture(requete);
         connectionFermeture(connection);
     }
 
+    // Modifier un membre
     public static void modMembre(String id, String nom, String prenom, String dateNaissance, String club) throws SQLException {
         PreparedStatement requete = null;
         Connection connection;
         connection = connectionOuverture();
 
+        // Update du membre dans la db
         requete = connection.prepareStatement("update membres set Membre_Nom=?, Membre_Prenom=?,Membre_DateNaissance=?, DISTINCT FK_Club=? where PK_Membre=?");
         requete.setString(1,nom);
         requete.setString(2,prenom);
@@ -133,88 +135,42 @@ public class BaseDeDonnees {
         System.out.println("Enregistrement modifie");
 
 
-        //requete.setString(2, mdpp);
-        //exécuter la requete
         requete.executeUpdate();
-
-
         connectionFermeture(requete);
         connectionFermeture(connection);
     }
 
-
+    // Supprimer un membre
     public static void supprimeMembre(String id) throws SQLException {
         PreparedStatement requete = null;
         Connection connection;
         connection = connectionOuverture();
 
+        // Delete dans la db
         requete = connection.prepareStatement("delete from membres where PK_Membre=?");
         requete.setInt(1,Integer.parseInt(id));
         System.out.println("Membre efface");
 
-
-
-        //requete.setString(2, mdpp);
-        //exécuter la requete
         requete.executeUpdate();
-
-
-        connectionFermeture(requete);
-        connectionFermeture(connection);
-    }
-    public static void ajoutClub(String nom, String type) throws SQLException {
-        PreparedStatement requete = null;
-        Connection connection;
-        connection = connectionOuverture();
-
-        requete = connection.prepareStatement("insert into clubs(Club_Nom, Club_Type) values (?,?)");
-        requete.setString(1, nom);
-        requete.setString(2, type);
-
-        //requete.setString(2, mdpp);
-        //exécuter la requete
-        requete.executeUpdate();
-
-
         connectionFermeture(requete);
         connectionFermeture(connection);
     }
 
-    public static void modClub(String id, String nom, String type) throws SQLException {
-        PreparedStatement requete = null;
-        Connection connection;
-        connection = connectionOuverture();
-
-        requete = connection.prepareStatement("update clubs set Club_Nom=?, DISTINCT Club_Type=? where PK_Club=?");
-        requete.setString(1,nom);
-        requete.setString(2,type);
-        requete.setInt(3,Integer.parseInt(id));
-        System.out.println("Enregistrement modifie");
-
-
-        //requete.setString(2, mdpp);
-        //exécuter la requete
-        requete.executeUpdate();
-
-
-        connectionFermeture(requete);
-        connectionFermeture(connection);
-    }
-
+    // Liste des membres
     public static ListeMembre recupereMembre(String id_mc){
-
 
         Connection connection = connectionOuverture();
         PreparedStatement requete = null;
         ResultSet rs = null;
 
-        //PreparedStatement requete;
 
         {
             try {
+                // Liste de tous les membres de tous les clubs
                 if (id_mc=="*"){
                     requete = connection.prepareStatement("SELECT * FROM membres INNER JOIN clubs on FK_Club=PK_CLub ORDER by Membre_Nom, Membre_Prenom");
                 }
+                // Liste des membres par club
                 else {
                     requete = connection.prepareStatement("SELECT * FROM membres INNER JOIN clubs on FK_Club=PK_CLub where FK_Club=? ORDER by Membre_Nom, Membre_Prenom");
                     requete.setInt(1, Integer.parseInt(id_mc));
@@ -248,12 +204,66 @@ public class BaseDeDonnees {
         return membres;
     }
 
+    // Ajouter un club
+    public static void ajoutClub(String nom, String type) throws SQLException {
+        PreparedStatement requete = null;
+        Connection connection;
+        connection = connectionOuverture();
 
+        // Insertion dans la db
+        requete = connection.prepareStatement("insert into clubs(Club_Nom, Club_Type) values (?,?)");
+        requete.setString(1, nom);
+        requete.setString(2, type);
+
+
+        requete.executeUpdate();
+        connectionFermeture(requete);
+        connectionFermeture(connection);
+    }
+
+    // Modifier un club
+    public static void modClub(String id, String nom, String type) throws SQLException {
+        PreparedStatement requete = null;
+        Connection connection;
+        connection = connectionOuverture();
+
+        // Update dans la db
+        requete = connection.prepareStatement("update clubs set Club_Nom=?, DISTINCT Club_Type=? where PK_Club=?");
+        requete.setString(1,nom);
+        requete.setString(2,type);
+        requete.setInt(3,Integer.parseInt(id));
+        System.out.println("Enregistrement modifie");
+
+        requete.executeUpdate();
+        connectionFermeture(requete);
+        connectionFermeture(connection);
+    }
+
+    // Supprimer un club
+    public static void supprimeClub(String id) throws SQLException {
+        PreparedStatement requete = null;
+        Connection connection;
+        connection = connectionOuverture();
+
+        // Delete dans la db
+        requete = connection.prepareStatement("delete from clubs where PK_Club=?");
+        requete.setInt(1,Integer.parseInt(id));
+        System.out.println("Enregistrement efface");
+
+
+        requete.executeUpdate();
+        connectionFermeture(requete);
+        connectionFermeture(connection);
+    }
+
+    // Chercher un club
     public static Club chercheClub(String id_c) throws SQLException {
         PreparedStatement requete = null;
         Connection connection;
         connection = connectionOuverture();
         System.out.println(id_c);
+
+        // Requête dans la db
         requete = connection.prepareStatement("SELECT * FROM clubs where PK_Club=?");
         requete.setInt(1,Integer.parseInt(id_c));
         rs = requete.executeQuery();
@@ -271,7 +281,7 @@ public class BaseDeDonnees {
         return club;
     }
 
-
+    // Liste des clubs
     public static ListeClub recupereClub(){
 
         ListeClub clubs= new ListeClub();
@@ -279,8 +289,6 @@ public class BaseDeDonnees {
         Connection connection = connectionOuverture();
         PreparedStatement requete = null;
         ResultSet rs = null;
-
-        //PreparedStatement requete;
 
         {
             try {
@@ -293,7 +301,6 @@ public class BaseDeDonnees {
                     System.out.println("ID : "+id+" Nom : "+nom+" / Type : "+type);
                     clubs.add(new Club(id,nom, type));
 
-
                 }
 
             } catch (SQLException e) {
@@ -302,30 +309,9 @@ public class BaseDeDonnees {
             connectionFermeture(rs);
             connectionFermeture(requete);
             connectionFermeture(connection);
-            //return membres;
 
         }
         return clubs;
-    }
-
-
-    public static void supprimeClub(String id) throws SQLException {
-        PreparedStatement requete = null;
-        Connection connection;
-        connection = connectionOuverture();
-
-        requete = connection.prepareStatement("delete from clubs where PK_Club=?");
-        requete.setInt(1,Integer.parseInt(id));
-        System.out.println("Enregistrement efface");
-
-
-        //requete.setString(2, mdpp);
-        //exécuter la requete
-        requete.executeUpdate();
-
-
-        connectionFermeture(requete);
-        connectionFermeture(connection);
     }
 
 }

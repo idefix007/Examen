@@ -1,3 +1,4 @@
+import java.util.*;
 public class Club {
 
     private String nom;
@@ -39,5 +40,7 @@ public class Club {
     public void setType(String type) {
         this.type = type;
     }
+    String tableauClub[] = {"Volley-ball", "Rugby", "Hand-ball" , "Basket-ball"};
+
 }
 

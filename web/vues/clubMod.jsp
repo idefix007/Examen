@@ -34,7 +34,14 @@
                         <c:otherwise>
                             <option value="${clubs.type}">${clubs.type}</option>
                         </c:otherwise>
+
                     </c:choose>
+                    <%--<c: forEach var="item" items="${Club.tableauClub}">--%>
+                        <%--<c:if test="${item !=clubs.type}">--%>
+                           <%--<option value="${item}">${item}</option>--%>
+                            <%--</c:if>--%>
+                    <%--</c: forEach>--%>
+
                     <option value="Basket-ball">Basket-ball</option>
                     <option value="Hand-ball">Hand-ball</option>
                     <option value="Rugby">Rugby</option>
@@ -56,3 +63,4 @@
 </body>
 </html>
 <%@include file="../templates/footer.jspf"%>
+<style> .col-6 {margin:30px;}</style>

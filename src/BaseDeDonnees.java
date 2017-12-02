@@ -1,7 +1,6 @@
 import java.sql.*;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.List;
+
 
 public class BaseDeDonnees {
 
@@ -198,7 +197,6 @@ public class BaseDeDonnees {
             connectionFermeture(rs);
             connectionFermeture(requete);
             connectionFermeture(connection);
-            //return membres;
 
         }
         return membres;

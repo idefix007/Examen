@@ -21,7 +21,7 @@ public class ListeMembre{
 
     public List<Membre> recupereMembres(String club) {
         membres.clear();
-        BaseDeDonnees.recupereMembre(club);
+        BaseDeDonnees.recupereMembre(club); // Appel de la méthode dans la classe base de données
         return membres;
     }
 

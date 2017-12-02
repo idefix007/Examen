@@ -68,7 +68,7 @@ public class BaseDeDonnees {
         }
     }
 
-    // Chercher un membre
+    // Chercher un membre pour pouvoir modifier sa fiche
     public static Membre chercheMembre(String id_m) throws SQLException {
         PreparedStatement requete = null;
         Connection connection;
@@ -254,7 +254,7 @@ public class BaseDeDonnees {
         connectionFermeture(connection);
     }
 
-    // Chercher un club
+    // Chercher un club pour pouvoir modifier sa fiche
     public static Club chercheClub(String id_c) throws SQLException {
         PreparedStatement requete = null;
         Connection connection;

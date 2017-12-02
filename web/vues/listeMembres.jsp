@@ -39,10 +39,10 @@
         <td>${membres.dateNaissance}</td>
         <td>${membres.club}</td>
         <td><a class="col-2" href="/supp-membre?membres=${membres.id}">
-            <i class="fa fa-trash-o"aria-hidden="true" style="color:red" onclick="return confirm('etes vous sur de vouloir supprimer ce membre?')"></i>
+            <i class="fa fa-trash-o"aria-hidden="true" style="color:blue" onclick="return confirm('etes vous sur de vouloir supprimer ce membre?')"></i>
         </a>
             <a class="col-2" href="/mod-membre?membres=${membres.id}">
-            <i class="fa fa-pencil"aria-hidden="true" style="color:orange"></i>
+            <i class="fa fa-pencil"aria-hidden="true" style="color:green"></i>
             </a> </td>
     </tr>
     </c:forEach>

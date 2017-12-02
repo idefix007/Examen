@@ -16,26 +16,35 @@
     <title>Gestion des clubs</title>
   </head>
   <body>
+  <div class="card-deck-wrapper">
+    <div class="card-deck">
 
+      <!-- Card 1 -->
+      <div class="card">
+        <div class="card-header">MEMBRES</div>
+        <div class="card-body">
+          <p class="card-text">Gestion des membres de tous les clubs.</p>
+          <a href="/membre" class="card-link">Liste des membres</a>
+          <a href="/add-membre" class="card-link">Ajouter un membre</a>
+        </div>
+      </div>
 
-  <H3>Membres</H3>
-  <a href="/membre" class="btn btn-info btn-block">
-    <i> Liste des membres</i>
-  </a>
+      <!-- Card 2 -->
+      <div class="card">
+        <div class="card-header">CLUBS</div>
+        <div class="card-body">
+          <p class="card-text">Gestion des clubs et des membres par club.</p>
+          <a href="/club" class="card-link">Liste des clubs</a>
+          <a href="/add-club" class="card-link">Ajouter un club</a>
+        </div>
+      </div>
 
-  <a href="/add-membre" class="btn btn-info btn-block">
-    <i class="fa fa-plus"> Ajouter</i>
-  </a>
-  <br>
-  <H3>Clubs</H3>
-  <a href="/club" class="btn btn-info btn-block">
-  <i> Liste des clubs</i>
-  </a>
-  <a href="/add-club" class="btn btn-info btn-block">
-    <i class="fa fa-plus"> Ajouter</i>
-  </a>
+    </div>
+  </div>
   </body>
 
 
 </html>
       <%@include file="templates/footer.jspf"%>
+
+      <style> .card-deck-wrapper{margin:60px;}</style>

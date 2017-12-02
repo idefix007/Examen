@@ -12,7 +12,7 @@ public class ServletListeMembre extends HttpServlet {
 
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("membres", listeMembre.recupereMembres());
+        request.setAttribute("membres", listeMembre.recupereMembres("*"));
         request.getRequestDispatcher("/vues/listeMembres.jsp").forward(request,response);
 
     }

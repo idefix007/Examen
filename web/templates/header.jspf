@@ -17,11 +17,7 @@
              <p class="card-text">Basketball, Hand-ball, Rugby, Volley-ball</p>
         </div>
 
-        <div class="btn-group" role="group" aria-label="...">
-
-
-
-        </div
+        <div class="btn-group" role="group" aria-label="..."></div
 
         <nav class="navbar navbar-default navbar-fixed-bottom">
             <div class="container">
@@ -29,7 +25,7 @@
         <!-- Split button -->
         <div class="btn-group">
             <button type="button" class="btn btn-danger">
-                <span href="/accueil">Accueil</span>
+                <a style="color:white" href="/accueil"> Accueil <span href="/accueil"></span></a>
             </button>
         </div>
 
@@ -58,13 +54,14 @@
         </div>
     </div>
 
-    </main>
+
+    </div>
+    </nav>
 
     </div>
 
     </div>
     </nav>
-
 
 
 </head>

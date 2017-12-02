@@ -23,6 +23,7 @@
                     <th>Id</th>
                     <th>Nom</th>
                     <th>Type</th>
+                    <th>Membres</th>
                     <th>Action</th>
 
                 </tr>
@@ -35,16 +36,17 @@
                         <td>${clubs.id}</td>
                         <td>${clubs.nom}</td>
                         <td>${clubs.type}</td>
+
+                        <td><a class="col-2" href="/membre-club?clubs=${clubs.id}">
+                            <i class="fa fa-users"aria-hidden="true" style="color:blueviolet"></i>
+                        </a> </td>
+
                         <td><a class="col-2" href="/supp-club?clubs=${clubs.id}">
                             <i class="fa fa-trash-o"aria-hidden="true" onclick="return confirm('etes vous sur de vouloir supprimer ce club?')"></i>
                         </a>
                             <a class="col-2" href="/mod-club?clubs=${clubs.id}">
-                                <i class="fa fa-pencil"aria-hidden="true" style="color:orange"></i>
-                            </a>
-
-                        <a class="col-2" href="/membre-club?clubs=${clubs.id}">
-                            <i class="fa fa-users"aria-hidden="true"></i>
-                        </a> </td>
+                                <i class="fa fa-pencil"aria-hidden="true" style="color:green"></i>
+                            </a></td>
 
                     </tr>
                 </c:forEach>

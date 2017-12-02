@@ -124,7 +124,7 @@ public class BaseDeDonnees {
         Connection connection;
         connection = connectionOuverture();
 
-        requete = connection.prepareStatement("update membres set Membre_Nom=?, Membre_Prenom=?,Membre_DateNaissance=?, FK_Club=? where PK_Membre=?");
+        requete = connection.prepareStatement("update membres set Membre_Nom=?, Membre_Prenom=?,Membre_DateNaissance=?, DISTINCT FK_Club=? where PK_Membre=?");
         requete.setString(1,nom);
         requete.setString(2,prenom);
         requete.setString(3,dateNaissance);
@@ -185,7 +185,7 @@ public class BaseDeDonnees {
         Connection connection;
         connection = connectionOuverture();
 
-        requete = connection.prepareStatement("update clubs set Club_Nom=?, Club_Type=? where PK_Club=?");
+        requete = connection.prepareStatement("update clubs set Club_Nom=?, DISTINCT Club_Type=? where PK_Club=?");
         requete.setString(1,nom);
         requete.setString(2,type);
         requete.setInt(3,Integer.parseInt(id));
@@ -201,7 +201,7 @@ public class BaseDeDonnees {
         connectionFermeture(connection);
     }
 
-    public static ListeMembre recupereMembre(){
+    public static ListeMembre recupereMembre(String id_mc){
 
 
         Connection connection = connectionOuverture();
@@ -212,48 +212,14 @@ public class BaseDeDonnees {
 
         {
             try {
-                requete = connection.prepareStatement("SELECT * FROM membres INNER JOIN clubs on FK_Club=PK_CLub ORDER by Membre_Nom, Membre_Prenom");
-                rs = requete.executeQuery();
-                while (rs.next()) {
-                    int id = rs.getInt(1);
-                    String nom = rs.getString(2);
-                    String prenom = rs.getString(3);
-                    Date datesql = rs.getDate(4);
-                    SimpleDateFormat sdfr = new SimpleDateFormat("dd/MM/yyyy");
-                    String dateNaissance = sdfr.format(datesql);
-                    int idClub = rs.getInt(5);
-                    String clubNom = rs.getString(7);
-                    System.out.println("Nom : "+nom+" / Prénom : "+prenom+ " / Date de naissance "+dateNaissance+" /Nom du club "+clubNom);
-                    membres.add(new Membre(id,nom, prenom, dateNaissance, clubNom, idClub));
-
-
+                if (id_mc=="*"){
+                    requete = connection.prepareStatement("SELECT * FROM membres INNER JOIN clubs on FK_Club=PK_CLub ORDER by Membre_Nom, Membre_Prenom");
+                }
+                else {
+                    requete = connection.prepareStatement("SELECT * FROM membres INNER JOIN clubs on FK_Club=PK_CLub where FK_Club=? ORDER by Membre_Nom, Membre_Prenom");
+                    requete.setInt(1, Integer.parseInt(id_mc));
                 }
 
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-            connectionFermeture(rs);
-            connectionFermeture(requete);
-            connectionFermeture(connection);
-            //return membres;
-
-        }
-        return membres;
-    }
-
-    public static ListeMembre recupereMembresClub(String id_mc){
-
-
-        Connection connection = connectionOuverture();
-        PreparedStatement requete = null;
-        ResultSet rs = null;
-
-        //PreparedStatement requete;
-
-        {
-            try {
-                requete = connection.prepareStatement("SELECT * FROM membres INNER JOIN clubs on FK_Club=PK_CLub where FK_Club=? ORDER by Membre_Nom, Membre_Prenom");
-                requete.setInt(1,Integer.parseInt(id_mc));
                 rs = requete.executeQuery();
                 while (rs.next()) {
                     int id = rs.getInt(1);
@@ -341,6 +307,7 @@ public class BaseDeDonnees {
         }
         return clubs;
     }
+
 
     public static void supprimeClub(String id) throws SQLException {
         PreparedStatement requete = null;
